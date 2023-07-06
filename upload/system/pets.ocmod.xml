@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<name>Pets</name>
+	<version>1.0</version>
+	<author>adminqqq@gmail.com</author>
+	<link>mailto:adminqqq@gmail.com</link>
+	<code>Pets</code>
+
+
+	<file path="admin/controller/extension/module.php">
+
+		<operation>
+			<search><![CDATA[$this->load->controller('module/' . $this->request->get['extension'] . '/install');]]></search>
+			<add position="before"><![CDATA[
+			//pets start
+				if($this->request->get['extension'] == 'pets') {
+				$this->load->model('module/pets');
+				$this->model_module_pets->install();
+			}
+			//pets end
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$this->load->controller('module/' . $this->request->get['extension'] . '/uninstall');]]></search>
+			<add position="before"><![CDATA[
+			//pets start
+				if($this->request->get['extension'] == 'pets') {
+				$this->load->model('module/pets');
+				$this->model_module_pets->uninstall();
+			}
+			//pets end
+			]]></add>
+		</operation>
+	</file>
+
+</modification>
